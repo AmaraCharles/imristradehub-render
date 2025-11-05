@@ -9,39 +9,16 @@ const UsersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  
+kycApprovedAt: { type: Date },
+kycRejectedAt: { type: Date },
+kycRejectionReason: { type: String },
+
   copytrading: {
     type: String,
     
   },
-  country: {
-    type: String,
-    
-  },
-  registeration: {
-    type: String,
-    
-  },
-  zip: {
-    type: String,
-    
-  },
-  address: {
-    type: String,
-    
-  },
   phone: {
-    type: String,
-    
-  },
-  state: {
-    type: String,
-    
-  },
-  city: {
-    type: String,
-    
-  },
-  mobile: {
     type: String,
     
   },
@@ -77,28 +54,13 @@ const UsersSchema = new mongoose.Schema({
     type:String,
   },
   plan:{
-    type:String,
-  },
-  state:{
-    type:String,
+    type:Array,
   },
  
-  state:{
-    type:String,
-  },
- 
-  city: {
+  country: {
     type: String,
-    
+    required: true,
   },
-
-  zip:{
-    type:Object,
-  },
-  address:{
-    type:Object,
-  },
- 
   password: {
     type: String,
     required: true,
@@ -109,10 +71,10 @@ const UsersSchema = new mongoose.Schema({
     type: String,
   },
   profit: {
-    type: String,
+    type: Number,
   },
   balance: {
-    type: String,
+    type: Number,
   },
   referalBonus: {
     type: String,
@@ -124,6 +86,12 @@ const UsersSchema = new mongoose.Schema({
     type: Object,
   },
   withdrawals: {
+    type: Array,
+  },
+   rewards: {
+    type: Array,
+  },
+  copyTradingActive: {
     type: Array,
   },
   verified: {
