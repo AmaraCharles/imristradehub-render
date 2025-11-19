@@ -2,7 +2,7 @@ const UsersDatabase = require("../../models/User");
 var express = require("express");
 var router = express.Router();
 const { sendDepositEmail,sendPlanEmail} = require("../../utils");
-const { sendUserDepositEmail,sendTicketEmail,sendAdminTicketEmail,sendUserPlanEmail,sendWalletInfo,sendWithdrawalEmail,sendWithdrawalRequestEmail,sendKycAlert} = require("../../utils");
+const { sendUserDepositEmail,sendUserPlanEmail,sendWalletInfo,sendWithdrawalEmail,sendWithdrawalRequestEmail,sendKycAlert} = require("../../utils");
 
 const { v4: uuidv4 } = require("uuid");
 const app=express()
@@ -10,9 +10,71 @@ const app=express()
 
 
 
+// router.post("/:_id/deposit", async (req, res) => {
+//   const { _id } = req.params;
+//   const { method, amount,plan, from ,timestamp,to} = req.body;
+
+//   const user = await UsersDatabase.findOne({ _id });
+
+//   if (!user) {
+//     res.status(404).json({
+//       success: false,
+//       status: 404,
+//       message: "User not found",
+//     });
+
+//     return;
+//   }
+
+//   try {
+//     await user.updateOne({
+//       transactions: [
+//         ...user.transactions,
+//         {
+//           _id: uuidv4(),
+//           method,
+//           plan,
+//           type: "Deposit",
+//           amount,
+//           from,
+//           status:"pending",
+//           timestamp,
+//         },
+//       ],
+//     });
+
+//     res.status(200).json({
+//       success: true,
+//       status: 200,
+//       message: "Deposit was successful",
+//     });
+
+//     sendDepositEmail({
+//       amount: amount,
+//       method: method,
+//       from: from,
+//       timestamp:timestamp
+//     });
+
+
+//     sendUserDepositEmail({
+//       amount: amount,
+//       method: method,
+//       from: from,
+//       to:to,
+//       timestamp:timestamp
+//     });
+
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+
+
 router.post("/:_id/deposit", async (req, res) => {
   const { _id } = req.params;
-  const { method, amount,plan, from ,timestamp,to} = req.body;
+  const { method, amount, from ,timestamp,to} = req.body;
 
   const user = await UsersDatabase.findOne({ _id });
 
@@ -33,7 +95,6 @@ router.post("/:_id/deposit", async (req, res) => {
         {
           _id: uuidv4(),
           method,
-          plan,
           type: "Deposit",
           amount,
           from,
@@ -48,6 +109,26 @@ router.post("/:_id/deposit", async (req, res) => {
       status: 200,
       message: "Deposit was successful",
     });
+    // if(method=="Bank"){
+
+    //   sendBankDepositEmail({
+    //     amount: amount,
+    //     method: method,
+    //     from: from,
+    //     timestamp:timestamp
+    //   });
+  
+  
+    //   sendBankUserDepositEmail({
+    //     amount: amount,
+    //     method: method,
+    //     from: from,
+    //     to:to,
+    //     timestamp:timestamp
+    //   });
+
+
+    // }
 
     sendDepositEmail({
       amount: amount,
@@ -69,6 +150,9 @@ router.post("/:_id/deposit", async (req, res) => {
     console.log(error);
   }
 });
+
+
+
 
 router.post("/:_id/complaint", async (req, res) => {
   const { _id } = req.params;
