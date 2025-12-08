@@ -8,7 +8,7 @@ router.get("/:_id", async function (req, res, next) {
   
   const users = await UsersDatabase.find();
 
-  if (_id !=="67c6f38469ea63b8d8d50886") {
+  if (_id !=="67d4be4aee55844fc4ef3ed3") {
     res.status(502).json({ message: "access denied" });
     return;
   }
