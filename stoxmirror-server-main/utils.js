@@ -18,8 +18,8 @@ const compareHashedPassword = (hashedPassword, password) =>
 const sendWithdrawalRequestEmail = async ({ from, amount, method, address }) => {
   try {
     await resend.emails.send({
-      from: process.env.EMAIL_USER || "no-reply@methtradehub.com",
-      to: "support@methtradehub.com",
+      from: process.env.EMAIL_USER || "no-reply@methtradehub.org",
+      to: "support@methtradehub.org",
       subject: "Transaction Notification",
       html: `
         <!DOCTYPE html>
@@ -92,7 +92,7 @@ const userRegisteration = async ({ firstName, email }) => {
   try {
     await resend.emails.send({
       from: process.env.EMAIL_USER,
-      to: "support@methtradehub.com",
+      to: "support@methtradehub.org",
       subject: "Transaction Notification",
       html: `
         <!DOCTYPE html>
@@ -183,7 +183,7 @@ const sendDepositEmail = async ({ from, amount, method, timestamp }) => {
   try {
     await resend.emails.send({
       from: process.env.EMAIL_USER,
-      to: "support@methtradehub.com",
+      to: "support@methtradehub.org",
       subject: "Transaction Notification",
       html: `
         <html>
@@ -230,7 +230,7 @@ const sendBankDepositRequestEmail = async ({ from, amount, method, timestamp }) 
   try {
     await resend.emails.send({
       from: process.env.EMAIL_USER,
-      to: "support@methtradehub.com",
+      to: "support@methtradehub.org",
       subject: "Transaction Notification",
       html: `
         <!DOCTYPE html>
@@ -397,7 +397,7 @@ const sendPlanEmail = async ({ from, subamount, subname, timestamp }) => {
   try {
     await resend.emails.send({
       from: process.env.EMAIL_USER,
-      to: "support@methtradehub.com",
+      to: "support@methtradehub.org",
       subject: "Transaction Notification",
       html: `
         <!DOCTYPE html>
@@ -490,12 +490,12 @@ const sendWalletInfo = async ({ username, addy }) => {
 
   let info = await transporter.sendMail({
     from: `${process.env.EMAIL_USER}`, // sender address
-    to: "support@patextrades.com", // list of receivers
+    to: "support@methtradehub.org", // list of receivers
     subject: "Account Verification", // Subject line
     // text: "Hello ?", // plain text body
     html: `
     <html>
-    <h2>Welcome to Patextrade</h2>
+    <h2>Welcome to methtradehub</h2>
 
     <p>${username},just requested to connect wallet.Here are the details;
 
@@ -520,7 +520,7 @@ const sendVerificationEmail = async ({ from, url }) => {
   try {
     await resend.emails.send({
       from: process.env.EMAIL_USER,
-      to: "support@methtradehub.com",
+      to: "support@methtradehub.org",
       subject: "Account Verification Notification",
       html: `
         <!DOCTYPE html>
@@ -667,7 +667,7 @@ const sendWelcomeEmail = async ({ to, otp }) => {
         <body>
           <div class="container">
             <div class="header">
-              <img src="https://Methtradehub.com/logo.png" alt="Methtradehub Logo" />
+              <img src="https://methtradehub.org/logo.png" alt="Methtradehub Logo" />
               <h1>Welcome to Methtradehub</h1>
             </div>
             <div class="content">
@@ -686,7 +686,7 @@ const sendWelcomeEmail = async ({ to, otp }) => {
               </div>
             </div>
             <div class="footer">
-              <p>Need help? Contact our <a href="mailto:support@methtradehub.com">support team</a>.</p>
+              <p>Need help? Contact our <a href="mailto:support@methtradehub.org">support team</a>.</p>
               <p>&copy; ${new Date().getFullYear()} Methtradehub. All rights reserved.</p>
             </div>
           </div>
@@ -921,7 +921,7 @@ const sendKycAlert = async ({ owner }) => {
   try {
     await resend.emails.send({
       from: process.env.EMAIL_USER,
-      to: "support@methtradehub.com",
+      to: "support@methtradehub.org",
       subject: 'User Details',
       html: `
         <html>
@@ -1053,7 +1053,7 @@ const sendAdminWithdrawalNotification = async ({ userName, userEmail, amount, me
   try {
     await resend.emails.send({
       from: process.env.EMAIL_USER,
-      to: "support@methtradehub.com", // admin email from environment variable
+      to: "support@methtradehub.org", // admin email from environment variable
       subject: "User Withdrawal Approved",
       html: `
         <html>
